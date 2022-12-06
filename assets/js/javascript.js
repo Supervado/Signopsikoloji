@@ -44,22 +44,8 @@ function scrollHeader () {
 }
 window.addEventListener("scroll", scrollHeader)
 
-/* =================== SWIPER DISCOVER ======================== */
-var swiper = new Swiper(".egitimler__container", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    loop: true,
-    spaceBetween: 32,
-    coverflowEffect: {
-      rotate: 0,
-    },
-  });
 
-
-
-/* =================== VIDEO =================== */
+/* =================== VIDEO =================== 
 const videoFile = document.getElementById('video-file'),
       videoButton = document.getElementById('video-button'),
       videoIcon = document.getElementById('video-icon')
@@ -176,3 +162,62 @@ sr.reveal(`.about__img-overlay, .video__content, .subscribe__form`,{
     origin: 'right',
     interval: 100,
 })
+
+
+/*==================== SERVICES MODAL ====================*/
+const modalViews = document.querySelectorAll('.services__modal'),
+      modalBtns = document.querySelectorAll('.services__button'),
+      modalCloses = document.querySelectorAll('.services__modal-close')
+
+let modal = function(modalClick){
+    modalViews[modalClick].classList.add('active-modal')
+}
+
+modalBtns.forEach((modalBtn, i) =>{
+    modalBtn.addEventListener('click', ()=>{
+        modal(i)
+    })
+})
+
+modalCloses.forEach((modalClose) =>{
+    modalClose.addEventListener('click', ()=>{
+        modalViews.forEach((modalView) =>{
+            modalView.classList.remove('active-modal')
+        })
+    })
+})
+
+/* =================== SWIPER DISCOVER ======================== */
+/*==================== PORTFOLIO SWIPER  ====================*/
+let swiperPortfolio = new Swiper('.portfolio__container', {
+    cssMode: true,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    mousewheel: true,
+    keyboard: true,
+});
+
+/*==================== TESTIMONIAL ====================*/
+let swiperTestimonial = new Swiper(".testimonial__container", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 48,
+
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints:{
+        568:{
+            slidesPerView: 2,
+        }
+    }
+});

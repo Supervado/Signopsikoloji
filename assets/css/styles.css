@@ -13,6 +13,7 @@
     --white-color: #fff;
     --scroll-bar-color: hsl(var(--hue-color), 12% ,90%);
     --scroll-thumb-color: hsl(var(--hue-color),12%, 75%);
+    --container-color: #fff;
     
     --body-font: 'Open Sans', sans-serif;
     --title-font: 'Raleway', sans-serif;
@@ -39,6 +40,7 @@
 
     --z-tooltip: 10;
     --z-fixed: 100;
+    --z-modal: 1000;
 
    --img-transition: .3s;
    --img-hidden: hidden;
@@ -70,6 +72,7 @@ body.dark-theme {
     
     --scroll-bar-color: hsl(var(--hue-color), 12% ,48%);
     --scroll-thumb-color: hsl(var(--hue-color),12%, 36%);
+    --container-color: hsl(var(--hue-color), 29%, 16%);
 }
 
 
@@ -155,6 +158,12 @@ input {
     text-transform: capitalize;
     margin-bottom: var(--mb-2);
 }
+.section__subtitle {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+    text-align: center;
+  }
 .container {
     max-width: 968px;
     margin-left: var(--mb-1);
@@ -353,8 +362,12 @@ input {
     background-color: var(--first-color-alt);
     
 }
+.button--small{
+    padding: .75rem 1rem;
+}
+
 .button--flex {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     column-gap: .25rem;
 
@@ -366,6 +379,20 @@ input {
 .button--link:hover {
     background: none;
 
+}
+.button--fixed{
+    display: initial;   
+    padding: 1rem 1.5rem;
+    border-radius: .5rem;
+}
+
+.btn--clr{
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+.btn--clr:hover{
+    color: #fff;
+    background-color: var(--first-color-alt);
 }
 
 /*======= ABOUT =========== */ 
@@ -391,46 +418,79 @@ input {
 }
 
 /* ========== EGİTİMLER ========== */
-.egitimler__card {
-    position: relative;
-    width: 200px;
-    overflow: var(--img-hidden);
-}
-
-.egitimler__data {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1rem;
-}
-
-.egitimler__title,
-.egitimler__description {
-    color: var(--white-color);
-}
-
-.egitimler__title {
+.portfolio__container{
+    overflow: initial;
+  }
+  .portfolio__content{
+    padding: 0 1.5rem;
+  }
+  .portfolio__img{
+    width: 265px;
+    border-radius: .5rem;
+    justify-self: center;
+  }
+  .portfolio__title{
     font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-0-25);
-}
+    margin-bottom: var(--mb-0-5);
+  }
+  .portfolio__description{
+    margin-bottom: var(--mb-0-75);
+  }
+  .portfolio__button:hover .button__icon{
+    transform: translateX(.25rem);
+  }
+  .swiper-button-prev::after,
+  .swiper-button-next::after{
+    content: '';
+  }
+  .swiper-portfolio-icon{
+    font-size: 2rem;
+    color: var(--first-color);
+  }
+  .swiper-button-prev{
+    left: -.5rem;
+  }
+  .swiper-button-next{
+    right: -.5rem;
+  }
+  .swiper-horizontal > .swiper-pagination-bullets{
+    bottom: -2.5rem;
+  }
+  .swiper-pagination-bullets-active {
+    background-color: var(--first-color);
+  }
+  .swiper-button-prev,
+  .swiper-button-next,
+  .swiper-pagination-bullets{
+    outline: none;
+  }
 
-.egitimler__description {
-    display: block;
-    font-size: var(--smaller-font-size);
-}
 
-.egitimler__img {
-    transition: var(--img-transition);
-}
-.egitimler__img:hover{
-    transform: var(--img-scale);
-}
+  /*==================== PROJECT IN MIND ====================*/
+.project{
+    text-align: center;
+  }
+  .project__bg{
+    background-color: var(--first-color-second);
+    padding-top: 3rem;
+  }
+  .project__title{
+    font-size: var(--h2-font-size);
+    margin-bottom: var(--mb-0-75);
+  }
+  .project__description{
+    margin-bottom: var(--mb-1-5);
+  }
+  .project__title,
+  .project__description{
+    color: #fff;
+  }
+  .project__img{
+    width: 232px;
+    justify-self: center;
+  }
 
-.swiper-container-3d .swiper-slide-shadow-left,
-.swiper-container-3d .swiper-slide-shadow-right {
-    background-image: none;
-}
-
-/* ============ EXPERIENCE ============== */
+/* ============ EXPERIENCE ============== 
 .experience__container {
     row-gap: 2.5rem;
     justify-content: center;
@@ -478,7 +538,7 @@ input {
     overflow: var(--img-hidden);
 }
 
-/* ============= VIDEO ============ */
+/* ============= VIDEO ============ 
 .video__container {
     padding-bottom: 1rem;
 }
@@ -502,79 +562,91 @@ input {
 }
 
 /* =========== TERAPİ ============ */
-.terapi__card,
-.terapi__img {
-    height: 210px;
-}
-
-.terapi__container {
-    grid-template-columns: repeat(1, max-content);
-    justify-content: center;
-}
-
-.terapi__card {
+.services__container{
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services__content{
     position: relative;
-    overflow: var(--img-hidden);
-}
-
-.terapi__content,
-.terapi__title {
-    color: var(--white-color);
-}
-
-.terapi__content {
-    position: absolute;
+    background-color: var(--container-color);
+    padding: 3.5rem .5rem 1.25rem 1.5rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+    transition: .3s;
+  }
+  .services__content:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+  }
+  .services__icon{
+    display: block;
+    font-size: 1.5rem;
+    color: var(--first-color);
+    margin-bottom: var(--mb-1);
+  }
+  .services__title{
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-1);
+    font-weight: var(--font-medium);
+  }
+  .services__button{
+    cursor: pointer;
+    font-size: var(--small-font-size);
+  }
+  .services__button:hover .button__icon{
+    transform: translateX(.25rem);
+  }
+  .services__modal{
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: .75rem .75rem 1rem;
-}
-.terapi__rating {
-    align-self: flex-end;
-    display: flex;
-    align-items: center;
-}
-.terapi__rating-icon {
-    font-size: .75rem;
-    margin-right: var(--mb-0-25);
-}
-.terapi__rating-number {
-    font-size: var(--small-font-size);
-}
-
-.terapi__subtitle,
-.terapi__seans {
-    display: block;
-}
-
-.terapi__title {
-    font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-0-25);
-}
-.terapi__subtitle {
-    font-size: var(--smaller-font-size);
-    margin-bottom: var(--mb-1-25);
-}
-
-.terapi__button {
-    position: absolute;
     right: 0;
     bottom: 0;
-    padding: .75rem 1rem;
-}
-
-.terapi__img {
-    transition: var(--img-transition);
-}
-
-.terapi__card:hover .terapi__img {
-    transform: var(--img-scale);
-}
-
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+  }
+  .services__modal-content{
+    position: relative;
+    background-color: var(--container-color);
+    padding: 1.5rem;
+    border-radius: .5rem;
+  }
+  .services__modal-services{
+    row-gap: 1rem;
+  }
+  .services__modal-service{
+    display: flex;
+  }
+  .services__modal-title{
+    font-size: var(--h3-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1-5);
+  }
+  .services__modal-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--first-color);
+    cursor: pointer;
+  }
+  .services__modal-icon{
+    color: var(--first-color);
+    margin-right: var(--mb-0-25);
+    margin-top: 4px;
+  }
+  
+  /* Active Modal */
+  .active-modal{
+    opacity: 1;
+    visibility: visible;
+  }
 /* ============== SUBSCRIBE ============= */
 .subscribe__bg {
     background-color: var(--first-color-second);
@@ -607,6 +679,41 @@ input {
 .subscribe__input::placeholder{
     color: var(--text-color);
 }
+
+/*==================== TESTIMONIAL ====================*/
+.testimonial__data,
+.testimonial__header{
+  display: flex;
+}
+
+.testimonial__data{
+  justify-content: space-between;
+  margin-bottom: var(--mb-1);
+}
+.testimonial__img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: var(--mb-0-75);
+}
+.testimonial__name{
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-medium);
+}
+.testimonial__client{
+  font-size: var(--small-font-size);
+  color: var(--text-color-light);
+}
+.testimonial__description{
+  margin-bottom: var(--mb-2-5);
+}
+.testimonial__icon-star{
+  color: var(--first-color);
+}
+.swiper .swiper-pagination-testimonial{
+  bottom: 0;
+}
+
 
 /* ========== sponsors ============= */
 .sponsor__container {
@@ -730,10 +837,17 @@ input {
 /* For small devices */
 
 @media screen and (max-width:340px) {
-    .terapi__container{
+    .services__container{
         grid-template-columns: max-content;
-        justify-content: center; 
+        justify-content: center;
     }
+    .services__content{
+        padding-right: 3.5rem;
+    }
+    .services__modal{
+        padding: 0 .5rem;
+    }
+    /*
     .experience__content {
         padding: 0;
     }
@@ -743,6 +857,11 @@ input {
     .experience__overlay:nth-child(2){
         width: 80px;
     }
+    */
+
+    .project__img{
+        width: 200px;
+    }
 
     .home__info {
         width: 190px;
@@ -751,6 +870,20 @@ input {
     .experience__img,
     .video__container {
         padding: 0;
+    }
+
+    .testimonial__data,
+    .testimonial__header{
+      flex-direction: column;
+      align-items: center;
+    }
+    .testimonial__img{
+      margin-right: 0;
+      margin-bottom: var(--mb-0-25);
+    }
+    .testimonial__data,
+    .testimonial__description{
+      text-align: center;
     }
 }
 
@@ -768,6 +901,10 @@ input {
     .subscribe__form {
         width: 470px;
         margin: 0 auto;
+    }
+    .project__container,
+    .portfolio__content{
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 @media screen and (min-width: 768px) {
@@ -802,6 +939,31 @@ input {
     .change-theme-name{
         display: none;
             
+    }
+    .section__subtitle{
+        margin-bottom: 4rem;
+    }
+    .portfolio__img{
+        width: 320px;
+    }
+    .portfolio__content{
+        align-items: center;
+    }
+    .project{
+        text-align: initial;
+    }
+    .project__bg{
+        background: none;
+    }
+    .project__container{
+        background-color: var(--first-color-second);
+        border-radius: 1rem;
+        padding: 3rem 2.5rem 0;
+        grid-template-columns: 1fr max-content;
+        column-gap: 3rem;
+    }
+    .project__data{
+        padding-top: .8rem;
     }
 
     .change-theme {
@@ -861,6 +1023,19 @@ input {
     .about__description {
         margin-bottom: var(--mb-2);
     }
+    .services__container{
+        grid-template-columns: repeat(3, 218px);
+        justify-content: center;
+    }
+    .services__icon{
+        font-size: 2rem;
+    }
+    .services__content{
+        padding: 6rem 0 2rem 2.5rem;
+    }
+    .services__modal-content{
+        width: 450px;
+    }
     .egitimler__container {
         width: 610px;
         margin-left: auto;
@@ -919,6 +1094,9 @@ input {
     .about__img-one{
         width: 630px;
     }
+    .services__container{
+        grid-template-columns: repeat(3, 238px);
+    }
     .egitimler__card {
         width: 237px;
     }
@@ -932,6 +1110,14 @@ input {
     .egitimler__title{
         font-size: var(--h2-font-size);
     }
+
+    .portfolio__content{
+        column-gap: 5rem;
+    }
+    .swiper-portfolio-icon{
+        font-size: 3.5rem;
+    }
+    
     .experience__content{
         margin: var(--mb-1) 0;
         column-gap: 3.5rem;
